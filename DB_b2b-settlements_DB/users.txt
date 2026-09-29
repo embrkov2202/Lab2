@@ -1,0 +1,15 @@
+CREATE TABLE users (
+    user_id        SERIAL PRIMARY KEY,
+    last_name      VARCHAR(50)  NOT NULL,   
+    first_name     VARCHAR(50)  NOT NULL,   
+    middle_name    VARCHAR(50),             
+    position_id    INT REFERENCES positions(position_id),
+    department_id  INT REFERENCES departments(department_id),
+    email          VARCHAR(100) UNIQUE NOT NULL,
+    phone          VARCHAR(20),
+    login          VARCHAR(50)  UNIQUE NOT NULL,
+    password_hash  VARCHAR(255) NOT NULL,
+    role_id        INT NOT NULL REFERENCES roles(role_id),
+    is_active      BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
